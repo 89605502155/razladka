@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python 3.13
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.11", "3.12", "3.13", "3.14"]
+        include:
+          - os: windows-latest
+            python: "3.13"
+          - os: macos-latest
+            python: "3.13"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python ${{ matrix.python }}
+      - run: uv run pytest
+
+  interop:
+    # Trosna files written by razladka against the reference Rust implementation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo install --git https://github.com/89605502155/trosna-file trosna-cli --locked
+      - run: uv sync --python 3.13
+      - run: uv run pytest -m interop
+        env:
+          TROSNA_CLI: trosna
