@@ -7,7 +7,7 @@ import datetime as dt
 import numpy as np
 import pandas as pd
 import pytest
-from hypothesis import given, settings
+from hypothesis import example, given, settings
 from hypothesis import strategies as st
 
 import razladka
@@ -83,9 +83,12 @@ def test_hundred_million_points_per_day_fit_in_ns() -> None:
     span=st.integers(1, 2**62),
     n=st.integers(2, 3000),
 )
+@example(start=2**62, span=2**62, n=2)  # end would be 2**63: clipped to the int64 maximum
+@example(start=-(2**63) + 1, span=2**64 - 2, n=3000)
 @settings(max_examples=300, deadline=None)
 def test_fill_times_is_exact(start: int, span: int, n: int) -> None:
-    span = max(span, n - 1)
+    # choose_unit guarantees both bounds fit into int64 and the step is >= 1
+    span = min(max(span, n - 1), 2**63 - 1 - start)
     end = start + span
     out = np.empty(n, dtype=np.int64)
     fill_times(out, start, end)

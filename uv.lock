@@ -1242,7 +1242,7 @@ wheels = [
 
 [[package]]
 name = "pytrosna"
-version = "0.1.0"
+version = "0.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "crc32c" },
@@ -1252,9 +1252,9 @@ dependencies = [
     { name = "tzdata", marker = "sys_platform == 'win32'" },
     { name = "zstandard", marker = "python_full_version < '3.14'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/dc/6f/946e86e2f440ae4481694f24873bea9c44c6995a3e81df8508e90945c9af/pytrosna-0.1.0.tar.gz", hash = "sha256:72f9c353c3fbd4c1b6dae6012391c9beadfd8a25368ee1c57d0bda0553c9c3d6", size = 162441, upload-time = "2026-10-09T12:10:38.884Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2a/f5/e7868159c912dfd01244f5c38838e02ee304a236161f4c2918e1767ffc57/pytrosna-0.1.1.tar.gz", hash = "sha256:10ffda89bd6a0b5f108c6ade083a32c0157cc10692043a7716d487c172658531", size = 164150, upload-time = "2026-10-09T12:55:13.351Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8b/b6/9dd36303257acbd63604221671672f263d0e8199df5c6661e4418356f483/pytrosna-0.1.0-py3-none-any.whl", hash = "sha256:2516a0ef61d3bd9b6513700338861e8382502b23c7f4812172198ff7c68a6be8", size = 98467, upload-time = "2026-10-09T12:10:36.968Z" },
+    { url = "https://files.pythonhosted.org/packages/ca/ec/d575a1df3d3ff1156e4f9544997a48b8b42fc24ba2d9742ed7640c489732/pytrosna-0.1.1-py3-none-any.whl", hash = "sha256:9afa3001769e66f522f34175bb88a20f6813c7e14194fb31885c4a418f097c26", size = 99076, upload-time = "2026-10-09T12:55:11.157Z" },
 ]
 
 [[package]]
@@ -1343,8 +1343,8 @@ requires-dist = [
     { name = "polars", marker = "extra == 'polars'", specifier = ">=1.0" },
     { name = "pyarrow", marker = "extra == 'all'", specifier = ">=15" },
     { name = "pyarrow", marker = "extra == 'arrow'", specifier = ">=15" },
-    { name = "pytrosna", marker = "extra == 'all'", specifier = ">=0.1.0" },
-    { name = "pytrosna", marker = "extra == 'trosna'", specifier = ">=0.1.0" },
+    { name = "pytrosna", marker = "extra == 'all'", specifier = ">=0.1.1" },
+    { name = "pytrosna", marker = "extra == 'trosna'", specifier = ">=0.1.1" },
     { name = "tsfile", marker = "extra == 'all'", specifier = ">=2.4" },
     { name = "tsfile", marker = "extra == 'tsfile'", specifier = ">=2.4" },
 ]
